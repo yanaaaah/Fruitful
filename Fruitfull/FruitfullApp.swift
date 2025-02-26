@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct FruitfullApp: App {
+    @State private var dayDataStore = DayDataStore()
+    
     var body: some Scene {
         WindowGroup {
+//            TabView {
+//                
+//            }
+//            .environment(dayDataStore)
             LoggingView()
+                .environment(dayDataStore)
         }
     }
 }

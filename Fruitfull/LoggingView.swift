@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LoggingView: View {
+
+    @Environment(DayDataStore.self) private var dayDataStore
+    
     @State private var sleep = 0.0
     @State private var movement = 0.0
     @State private var social = 0.0
@@ -53,7 +56,7 @@ struct LoggingView: View {
                             }
                             Slider(value: $study, in: 0...24, step:0.5)
                             HStack{
-                                Text("Hours per day: \(String(format: "%.1f", Double(study)))")
+                                Text("\(String(format: "%.1f", Double(study))) hours per day")
                             }
                         }
                         .padding(20)
@@ -71,15 +74,26 @@ struct LoggingView: View {
                             }
                             Slider(value: $work, in: 0...24, step:0.5)
                             HStack{
-                                Text("Hours per day: \(String(format: "%.1f", Double(work)))")
+                                Text("\(String(format: "%.1f", Double(work))) hours per day")
                             }
                         }
                         .padding(20)
-                        .background(Color.black.opacity(0.25))
+                        .background(Color.gray.opacity(0.25))
                         .cornerRadius(30)
                     }
                     Text("Total Hours Logged: \(String(format: "%.1f", Double(sleep + study + movement + social + work + personal + downtime)))\n")
                         .font(.title2)
+                    Button("Save") {
+                        let dayData = DaySet(sleep: sleep, movement: movement, social: social, personal: personal, downtime: downtime, study: study, work: work)
+                        // Create an array for storing this dayData.
+                        // Add the dayData to the array.
+                        dayDataStore.dayDataArray.append(dayData)
+                        //  dayDataStore.goalData = goalData
+                        print(dayDataStore.dayDataArray)
+                    }
+                    .padding()
+                    .background(.gray.opacity(0.25))
+                    .cornerRadius(30)
                 }
                 .onChange(of: sleep + study + movement + social + work + personal + downtime, checkHoursNotExceeded)
                 .alert(Text(alertTitletoomuch), isPresented: $showingAlerttoomuch) {
@@ -106,5 +120,7 @@ struct LoggingView: View {
 
 
 #Preview {
+    @Previewable @State var dayDataStore = DayDataStore()
     LoggingView()
+        .environment(dayDataStore)
 }
