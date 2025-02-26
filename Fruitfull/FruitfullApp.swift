@@ -13,13 +13,38 @@ struct FruitfullApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            TabView {
-//                
-//            }
-//            .environment(dayDataStore)
-            LoggingView()
-                .environment(dayDataStore)
+            
+            TabView {
+                Tab{
+                    HomeView()
+                        .environment(dayDataStore)
+                } label: {
+                    Image(systemName: "tree")
+                    Text("Home")
+                    
+                }
+                
+                Tab {
+                    LoggingView()
+                        .environment(dayDataStore)
+                } label: {
+                    Image(systemName: "drop")
+                    Text("Log")
+                }
+                Tab {
+                    AccountView()
+                        .environment(dayDataStore)
+                } label: {
+                    Image(systemName: "person")
+                    Text("Account")
+                }
+            }
+            .environment(dayDataStore)
         }
+        //            TabView {
+        //
+        //            }
+        //            .environment(dayDataStore)
     }
 }
 

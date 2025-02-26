@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct EditGoalsView: View {
+    
+    @Environment(DayDataStore.self) private var dayDataStore
+    
     @State private var sleep = 0.0
     @State private var movement = 0.0
     @State private var social = 0.0
@@ -83,34 +86,46 @@ struct EditGoalsView: View {
                     }
                     Text ("Total Time Commitment: \(String(format: "%.1f", Double(sleep+movement+social+personal+downtime+study+work)))")
                         .font(.title2)
-                }
-                .onChange(of: sleep, checkHoursNotExceeded)
-                .onChange(of: movement, checkHoursNotExceeded)
-                .onChange(of: social, checkHoursNotExceeded)
-                .onChange(of: personal, checkHoursNotExceeded)
-                .onChange(of: downtime, checkHoursNotExceeded)
-                .onChange(of: study, checkHoursNotExceeded)
-                .onChange(of: work, checkHoursNotExceeded)
-                .alert(Text(alertTitletoomuch), isPresented: $showingAlerttoomuch) {
-                    Button(alertButtonTexttoomuch) {
+                    
+                    Button("Save") {
+                        let goalData = DaySet(sleep: sleep, movement: movement, social: social, personal: personal, downtime: downtime, study: study, work: work)
+                        // Create an array for storing this dayData.
+                        // Add the dayData to the array.
+                        //dayDataStore.dayDataArray.append(dayData)
+                        dayDataStore.goalData = goalData
+                    }
+                    .onChange(of: sleep, checkHoursNotExceeded)
+                    .onChange(of: movement, checkHoursNotExceeded)
+                    .onChange(of: social, checkHoursNotExceeded)
+                    .onChange(of: personal, checkHoursNotExceeded)
+                    .onChange(of: downtime, checkHoursNotExceeded)
+                    .onChange(of: study, checkHoursNotExceeded)
+                    .onChange(of: work, checkHoursNotExceeded)
+                    .alert(Text(alertTitletoomuch), isPresented: $showingAlerttoomuch) {
+                        Button(alertButtonTexttoomuch) {
+                            
+                        }
+                    } message: {
+                        Text(alertMessagetoomuch)
                         
                     }
-                } message: {
-                    Text(alertMessagetoomuch)
-                    
                 }
+                .padding(15)
             }
-            .padding(15)
         }
     }
-    
-    func checkHoursNotExceeded() {
-        if sleep + study + movement + social + work + personal + downtime > 24 {
-            showingAlerttoomuch = true
-        }
+        
+        func checkHoursNotExceeded() {
+            if sleep + study + movement + social + work + personal + downtime > 24 {
+                showingAlerttoomuch = true
+            }
+            
     }
 }
-
 #Preview {
+    
+    @Previewable @State var dayDataStore = DayDataStore()
     EditGoalsView()
+        .environment(dayDataStore)
 }
+    

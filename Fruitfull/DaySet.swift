@@ -4,7 +4,7 @@ import SwiftUICore
 @Observable class DayDataStore {
     // This will hold the array
     var dayDataArray: [DaySet] = []
-//    var goalData: DaySet = ...
+    var goalData: DaySet? //= ... (harrysaid but we cant get to work rip)
 }
 
 

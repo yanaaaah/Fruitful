@@ -18,6 +18,9 @@ struct ActivityCategory: Identifiable {
 }
 
 struct HomeView: View {
+    
+    @Environment(DayDataStore.self) private var dayDataStore
+    
     @State private var showInfoAlert = false
     @State private var showFruitAlert = false
     @State private var selectedInfoCategory: ActivityCategory?
@@ -27,15 +30,7 @@ struct HomeView: View {
     var count: Int = 0 //for the commit
     
     
-    let categories = [
-        ActivityCategory(name: "Sleep", color: .mint, score: 4, goalTime: 24, loggedTime: 24, fruitEmoji: "🍏"),
-        ActivityCategory(name: "Movement", color: .blue, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍊"),
-        ActivityCategory(name: "Social", color: .yellow, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍇"),
-        ActivityCategory(name: "Personal", color: .green, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍓"),
-        ActivityCategory(name: "Downtime", color: .orange, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🥭"),
-        ActivityCategory(name: "Study", color: .purple, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍑"),
-        ActivityCategory(name: "Work", color: .brown, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍒")
-    ]
+    @State var categories: [ActivityCategory] = []
     
     let phrases = [
         "Well done, your week has been fruitful!",
@@ -78,6 +73,25 @@ struct HomeView: View {
             .onAppear {
                 checkCompletedCategories()
             }
+        }
+        .onAppear {
+            let averageSleep = dayDataStore.dayDataArray.map { $0.sleep }.reduce(0, +) / Double(dayDataStore.dayDataArray.count)
+            let averageMovement = dayDataStore.dayDataArray.map { $0.movement }.reduce(0, +) / Double(dayDataStore.dayDataArray.count)
+            let averageSocial = dayDataStore.dayDataArray.map { $0.social }.reduce(0, +) / Double(dayDataStore.dayDataArray.count)
+            let averagePersonal = dayDataStore.dayDataArray.map { $0.personal }.reduce(0, +) / Double(dayDataStore.dayDataArray.count)
+            let averageDowntime = dayDataStore.dayDataArray.map { $0.downtime }.reduce(0, +) / Double(dayDataStore.dayDataArray.count)
+            let averageStudy = dayDataStore.dayDataArray.map { $0.study }.reduce(0, +) / Double(dayDataStore.dayDataArray.count)
+            let averageWork = dayDataStore.dayDataArray.map { $0.work }.reduce(0, +) / Double(dayDataStore.dayDataArray.count)
+            
+            categories = [
+                ActivityCategory(name: "Sleep", color: .mint, score: 4, goalTime: dayDataStore.goalData?.sleep ?? 0, loggedTime: averageSleep, fruitEmoji: "🍏"),
+                ActivityCategory(name: "Movement", color: .blue, score: 3, goalTime:dayDataStore.goalData?.movement ?? 0, loggedTime: averageMovement, fruitEmoji: "🍊"),
+                ActivityCategory(name: "Social", color: .yellow, score: 3, goalTime: dayDataStore.goalData?.social ?? 0, loggedTime: averageSocial, fruitEmoji: "🍇"),
+                ActivityCategory(name: "Personal", color: .green, score: 3, goalTime:dayDataStore.goalData?.personal ?? 0, loggedTime: averagePersonal, fruitEmoji: "🍓"),
+                ActivityCategory(name: "Downtime", color: .orange, score: 3, goalTime: dayDataStore.goalData?.downtime ?? 0, loggedTime: averageDowntime, fruitEmoji: "🥭"),
+                ActivityCategory(name: "Study", color: .purple, score: 3, goalTime:dayDataStore.goalData?.study ?? 0, loggedTime: averageStudy, fruitEmoji: "🍑"),
+                ActivityCategory(name: "Work", color: .brown, score: 3, goalTime: dayDataStore.goalData?.work ?? 0, loggedTime: averageWork, fruitEmoji: "🍒")
+            ]
         }
     }
     
@@ -237,5 +251,7 @@ struct CustomProgressStyle: ProgressViewStyle {
 }
 
 #Preview {
+    @Previewable @State var dayDataStore = DayDataStore()
     HomeView()
+        .environment(dayDataStore)
 }
