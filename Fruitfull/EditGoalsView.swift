@@ -36,8 +36,9 @@ struct EditGoalsView: View {
                 ScrollView {
                     VStack {
                         Text("What time balance will make your tree fruitful?")
-                            .font(.title)
-                        
+                            //.font(.title)
+                            .font(.headline)
+                            .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
                         EditGoalsBubblesView(symbol: "bed.double.fill", title: " Sleep", value: $sleep, colour: .green, alertTitle: "Sleep", alertMessage: "Sleep is cruicial for enhacing overall well-being and cognitive function with most people needing 7-9 hours.", alertButtonText: "Done" )
                         EditGoalsBubblesView(symbol: "figure.walk", title: "Movement", value: $movement, colour: .blue, alertTitle: "Movement Information", alertMessage: "Physical movement is important for overall health and well-being and recommended 30mins a day.", alertButtonText: "Done" )
@@ -94,6 +95,10 @@ struct EditGoalsView: View {
                         //dayDataStore.dayDataArray.append(dayData)
                         dayDataStore.goalData = goalData
                     }
+                    .padding()
+                    .background(.gray.opacity(0.25))
+                    .cornerRadius(30)
+                    
                     .onChange(of: sleep, checkHoursNotExceeded)
                     .onChange(of: movement, checkHoursNotExceeded)
                     .onChange(of: social, checkHoursNotExceeded)

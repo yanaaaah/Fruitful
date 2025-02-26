@@ -34,8 +34,8 @@ struct HomeView: View {
     
     let phrases = [
         "Well done, your week has been fruitful!",
-        "Keep going! You've got this!",
-        "Time to make progress!"
+        "Keep going! There's still more fruit to grow!",
+        "Let's start growing some fruit!"
     ]
     
     var body: some View {
@@ -103,7 +103,7 @@ struct HomeView: View {
         VStack(spacing: 8) {
             Text("Fruitful")
                 .font(.system(size: 34, weight: .bold))
-                .fontWidth(.expanded)
+                //.fontWidth(.bold)
             
             Group {
                 if fruitsEarned <= 1 {

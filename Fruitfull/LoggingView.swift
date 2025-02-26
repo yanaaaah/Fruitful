@@ -37,7 +37,9 @@ struct LoggingView: View {
                 ScrollView {
                     VStack {
                         Text("How did you water your tree today?")
-                            .font(.title)
+                           // .font(.title)
+                            .font(.headline)
+                            .foregroundColor(.secondary)
                         //.fontWeight(.bold)
                             .multilineTextAlignment(.center)
                         EditGoalsBubbleSubView(symbol: "bed.double.fill", title: " Sleep", value: $sleep, colour: .green, alertTitle: "Sleep", alertMessage: "Sleep is cruicial for enhacing overall well-being and cognitive function with most people needing 7-9 hours.", alertButtonText: "Done" )

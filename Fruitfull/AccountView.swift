@@ -17,12 +17,19 @@ struct AccountView: View {
     
     var body: some View {
         NavigationStack {
+            Text("Account")
+                .font(.system(size: 34, weight: .bold))
             ZStack {
+                HStack {
+                    Spacer()
+                    Image(.image)
+                        .resizable()
+                        .scaledToFit()
+                        .opacity(0.5)
+                }
+                Spacer()
                 VStack {
                     //Account headline
-                    Text("Account")
-                        .font(.system(size: 34, weight: .bold))
-                    Spacer()
                     
                     // Edit Goals Button
                     NavigationLink(destination: EditGoalsView()) {
@@ -38,26 +45,27 @@ struct AccountView: View {
                     NavigationLink(destination: SettingsView()) {
                         AccountOptionRow(icon: "gearshape", title: "Settings")
                     }
-                    Spacer()
+                
                     
+    
+                   // .background(.white)
+                  //  .padding()
+                   
+                   // Spacer()
                     
+            
+               
                 }
-                .background(.white)
                 .padding()
-                
-                // Tree
-                HStack {
-                    Spacer()
-                    Image(.image)
-                        .resizable()
-                        .scaledToFit()
-                        .opacity(0.5)
-                }
-                
+                Spacer()
+                    
             }
         }
         
     }
+    
+    
+    
     
     // Account Option Row Reusable Component
     struct AccountOptionRow: View {
