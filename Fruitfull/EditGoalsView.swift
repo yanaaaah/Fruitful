@@ -52,9 +52,9 @@ struct EditGoalsView: View {
                             }
                             Slider(value: $study, in: 0...24, step:0.5)
                             HStack{
-                                Text("Hours per day: \(String(format: "%.1f", Double(study)))")
+                                Text(" \(String(format: "%.1f", Double(study))) hours a day")
                                 Spacer()
-                                Text("Hours per week: \(String(format: "%.1f", Double(study)*7))")
+                                Text(" \(String(format: "%.1f", Double(study)*7)) hours a week ")
                             }
                         }
                         .padding(20)
@@ -72,9 +72,9 @@ struct EditGoalsView: View {
                             }
                             Slider(value: $work, in: 0...24, step:0.5)
                             HStack{
-                                Text("Hours per day: \(String(format: "%.1f", Double(work)))")
+                                Text(" \(String(format: "%.1f", Double(study))) hours a day")
                                 Spacer()
-                                Text("Hours per week: \(String(format: "%.1f", Double(work)*7))")
+                                Text(" \(String(format: "%.1f", Double(study)*7)) hours a week ")
                             }
                         }
                         .padding(20)
