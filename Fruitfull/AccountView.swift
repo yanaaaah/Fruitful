@@ -5,134 +5,125 @@
 //  Created by Yana Duran on 24/2/2025.
 //
 
+
+/*
+ */
+
 import SwiftUI
 
 struct AccountView: View {
-        var body: some View {
-            
+    /*  @State private var isSyncing = false
+     @State private var navigateToSync = false */ // Animation
+    
+    var body: some View {
+        NavigationStack {
             ZStack {
-                //Account View
-                VStack(spacing: 10) {
-                    Text("Account View")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .padding(.top, 50)
-                        .padding(.bottom, 120)
-                    
-                    VStack(spacing: 30) {
-                        MenuButton(
-                            title: "Edit Goals",
-                            icon: "target",
-                            action: {}
-                        )
-                        
-                        MenuButton(
-                            title: "iCloud Sync",
-                            icon: "arrow.2.circlepath",
-                            action: {}
-                        )
-                        
-                        MenuButton(
-                            title: "Settings",
-                            icon: "gearshape",
-                            action: {}
-                        )
-                    }
-                    .padding(.horizontal, 70)
-                    
+                VStack {
+                    //Account headline
+                    Text("Account")
+                        .font(.system(size: 34, weight: .bold))
                     Spacer()
                     
-
-                // Custom tab bar
-                    CustomTabBar()
-                        .padding(.top, 70)
+                    // Edit Goals Button
+                    NavigationLink(destination: EditGoalsView()) {
+                        AccountOptionRow(icon: "target", title: "Edit Goals")
+                    }
+                    
+                    NavigationLink(destination: ICloudSyncView()) {
+                        AccountOptionRow(icon: "arrow.triangle.2.circlepath", title: "iCloud Sync")
+                    }
+                    
+                    
+                    // Settings Button
+                    NavigationLink(destination: SettingsView()) {
+                        AccountOptionRow(icon: "gearshape", title: "Settings")
+                    }
+                    Spacer()
+                    
+                    
                 }
                 .background(.white)
+                .padding()
                 
-            // Bamboo background (N.A ~ leaf.fill)
-                Image(.image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 500, height: 800, alignment: .trailing)
-                    .offset(x: 350, y: -10)
-                
-                
-            }
-        }
-            
-    //Edits
-        //01
-            struct MenuButton: View {
-                let title: String
-                let icon: String
-                let action: () -> Void
-                
-                var body: some View {
-                    Button(action: action) {
-                        HStack {
-                            Image(systemName: icon)
-                                .font(.system(size: 40))
-                                .foregroundColor(.black)
-                                .frame(width: 70, height: 70)
-                                .padding(.horizontal, 10)
-                            
-                            Text(title)
-                                .foregroundColor(.black)
-                                .font(.system(size: 25))
-                            
-                            Spacer()
-                        }
-                        .padding()
-                        .background(Color(UIColor.systemGray6))
-                        .cornerRadius(10)
-                    }
+                // Tree
+                HStack {
+                    Spacer()
+                    Image(.image)
+                        .resizable()
+                        .scaledToFit()
+                        .opacity(0.5)
                 }
-            }
-            
-            
-        //02
-        struct CustomTabBar: View {
-                var body: some View {
-                    HStack {
-                        Spacer()
-                        TabBarButton(icon: "tree", isSelected: false)
-                        Spacer()
-                        TabBarButton(icon: "drop", isSelected: false)
-                        Spacer()
-                        TabBarButton(icon: "person.crop.circle", isSelected: true, isPersonIcon: true)
-                        Spacer()
-                    }
-                    .padding(.bottom, 05)
-                    .padding(.horizontal, -40)
-                    .background(Color.white)
-                    //.background(Color(UIColor.secondarySystemBackground))
-                }
+                
             }
         }
         
-        //03
-        struct TabBarButton: View {
-            let icon: String
-            let isSelected: Bool
-            var isPersonIcon: Bool = false
-            
-            var iconColor: Color {
-                if isPersonIcon && isSelected {
-                    return .brown
-                }
-                return isSelected ? .primary : .gray
-            }
-            
-            var body: some View {
+    }
+    
+    // Account Option Row Reusable Component
+    struct AccountOptionRow: View {
+        var icon: String
+        var title: String
+        
+        var body: some View {
+            HStack {
                 Image(systemName: icon)
-                    .foregroundColor(iconColor)
-                    .font(.system(size: 24))
+                    .font(.system(size: 40))
+                    .foregroundColor(.black)
+                    .padding()
+                Text(title)
+                    .font(.system(size: 20))
+                    .bold()
+                    .foregroundColor(.black)
+                Spacer()
             }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color(UIColor.systemGray6))
+            .cornerRadius(12)
         }
-
-    // Preview
-            struct AccountView_Previews: PreviewProvider {
-                static var previews: some View {
-                    AccountView()
-                }
+    }
+    
+    // Navigation Bar
+    struct CustomTabBar: View {
+        var body: some View {
+            HStack {
+                Spacer()
+                TabBarButton(icon: "tree", isSelected: false)
+                Spacer()
+                TabBarButton(icon: "drop", isSelected: false)
+                Spacer()
+                TabBarButton(icon: "person.crop.circle", isSelected: true, isPersonIcon: true)
+                Spacer()
             }
+            .padding(.horizontal, -70)
+            .background(Color.white)
+            //.background(Color(UIColor.secondarySystemBackground))
+        }
+    }
+    
+    struct TabBarButton: View {
+        let icon: String
+        let isSelected: Bool
+        var isPersonIcon: Bool = false
+        
+        var iconColor: Color {
+            if isPersonIcon && isSelected {
+                return .brown
+            }
+            return isSelected ? .primary : .gray
+        }
+        
+        var body: some View {
+            Image(systemName: icon)
+                .foregroundColor(iconColor)
+                .font(.system(size: 24))
+        }
+    }
+}
+
+// Preview
+struct AccountView_Previews: PreviewProvider {
+    static var previews: some View {
+        AccountView()
+    }
+}
