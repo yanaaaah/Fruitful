@@ -27,12 +27,12 @@ struct HomeView: View {
     var count: Int = 0
     
     let categories = [
-        ActivityCategory(name: "Sleep", color: .mint, score: 4, goalTime: 24, loggedTime: 14, fruitEmoji: "🍏"),
-        ActivityCategory(name: "Movement", color: .blue, score: 3, goalTime: 24, loggedTime: 14, fruitEmoji: "🍊"),
-        ActivityCategory(name: "Social", color: .yellow, score: 3, goalTime: 24, loggedTime: 14, fruitEmoji: "🍇"),
-        ActivityCategory(name: "Personal", color: .green, score: 3, goalTime: 24, loggedTime: 14, fruitEmoji: "🍓"),
+        ActivityCategory(name: "Sleep", color: .mint, score: 4, goalTime: 24, loggedTime: 24, fruitEmoji: "🍏"),
+        ActivityCategory(name: "Movement", color: .blue, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍊"),
+        ActivityCategory(name: "Social", color: .yellow, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍇"),
+        ActivityCategory(name: "Personal", color: .green, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍓"),
         ActivityCategory(name: "Downtime", color: .orange, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🥭"),
-        ActivityCategory(name: "Study", color: .purple, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍍"),
+        ActivityCategory(name: "Study", color: .purple, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍑"),
         ActivityCategory(name: "Work", color: .brown, score: 3, goalTime: 24, loggedTime: 24, fruitEmoji: "🍒")
     ]
     
@@ -119,7 +119,7 @@ struct HomeView: View {
                             showFruitAlert = true
                         } label: {
                             Text(category.fruitEmoji)
-                                .font(.system(size: 28))
+                                .font(.system(size: 40))
                                 .hoverEffect(.lift)
                         }
                         .buttonStyle(.plain)
@@ -190,7 +190,7 @@ struct HomeView: View {
         switch category {
         case "Sleep": return CGSize(width: -50, height: -120)
         case "Movement": return CGSize(width: 30, height: -80)
-        case "Social": return CGSize(width: 80, height: -120)
+        case "Social": return CGSize(width: 90, height: -120)
         case "Personal": return CGSize(width: -130, height: -80)
         case "Downtime": return CGSize(width: -40, height: -50)
         case "Study": return CGSize(width: 100, height: -60)
