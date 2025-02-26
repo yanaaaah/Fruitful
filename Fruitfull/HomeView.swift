@@ -57,13 +57,13 @@ struct HomeView: View {
                 Text("You earned a \(category.fruitEmoji) for completing \(category.name) goals!")
             }
             // Info alert
-            .alert("Category Details",
+            .alert("Sleep Details",
                    isPresented: $showInfoAlert,
                    presenting: selectedInfoCategory) { _ in
                 Button("OK") { }
             } message: { category in
-                VStack {
-                    Text("\(category.name)")
+                VStack {        //FIX THIS - IT REPEATS FOR ALL THE CATEGORIES (STUDY AND WORK SHOULDN'T HAVE INFO ICON
+                    Text("Sleep is cruicial for enhacing overall well-being and cognitive function with most people needing 7-9 hours.")
                         .font(.headline)
                     Text("Goal: \(category.goalTime.formatted()) hours")
                     Text("Logged: \(category.loggedTime.formatted()) hours")
@@ -84,13 +84,13 @@ struct HomeView: View {
             let averageWork = dayDataStore.dayDataArray.map { $0.work }.reduce(0, +) / Double(dayDataStore.dayDataArray.count)
             
             categories = [
-                ActivityCategory(name: "Sleep", color: .mint, score: 4, goalTime: dayDataStore.goalData?.sleep ?? 0, loggedTime: averageSleep, fruitEmoji: "🍏"),
-                ActivityCategory(name: "Movement", color: .blue, score: 3, goalTime:dayDataStore.goalData?.movement ?? 0, loggedTime: averageMovement, fruitEmoji: "🍊"),
-                ActivityCategory(name: "Social", color: .yellow, score: 3, goalTime: dayDataStore.goalData?.social ?? 0, loggedTime: averageSocial, fruitEmoji: "🍇"),
-                ActivityCategory(name: "Personal", color: .green, score: 3, goalTime:dayDataStore.goalData?.personal ?? 0, loggedTime: averagePersonal, fruitEmoji: "🍓"),
-                ActivityCategory(name: "Downtime", color: .orange, score: 3, goalTime: dayDataStore.goalData?.downtime ?? 0, loggedTime: averageDowntime, fruitEmoji: "🥭"),
-                ActivityCategory(name: "Study", color: .purple, score: 3, goalTime:dayDataStore.goalData?.study ?? 0, loggedTime: averageStudy, fruitEmoji: "🍑"),
-                ActivityCategory(name: "Work", color: .brown, score: 3, goalTime: dayDataStore.goalData?.work ?? 0, loggedTime: averageWork, fruitEmoji: "🍒")
+                ActivityCategory(name: "Sleep", color: .sleepColour, score: 4, goalTime: dayDataStore.goalData?.sleep ?? 0, loggedTime: averageSleep, fruitEmoji: "🍏"),
+                ActivityCategory(name: "Movement", color: .movementColour, score: 3, goalTime:dayDataStore.goalData?.movement ?? 0, loggedTime: averageMovement, fruitEmoji: "🫐"),
+                ActivityCategory(name: "Social", color: .socialColour, score: 3, goalTime: dayDataStore.goalData?.social ?? 0, loggedTime: averageSocial, fruitEmoji: "🍍"),
+                ActivityCategory(name: "Personal", color: .personalColour, score: 3, goalTime:dayDataStore.goalData?.personal ?? 0, loggedTime: averagePersonal, fruitEmoji: "🍊"),
+                ActivityCategory(name: "Downtime", color: .downtimeColour, score: 3, goalTime: dayDataStore.goalData?.downtime ?? 0, loggedTime: averageDowntime, fruitEmoji: "🍉"),
+                ActivityCategory(name: "Study", color: .studyColour, score: 3, goalTime:dayDataStore.goalData?.study ?? 0, loggedTime: averageStudy, fruitEmoji: "🍇"),
+                ActivityCategory(name: "Work", color: .workColour, score: 3, goalTime: dayDataStore.goalData?.work ?? 0, loggedTime: averageWork, fruitEmoji: "🍓")
             ]
         }
     }

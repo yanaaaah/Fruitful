@@ -10,7 +10,7 @@ import SwiftUI
 struct EditGoalsBubblesView: View {
     @State private var infoAlert = false
     
-    var symbol: String
+    //var symbol: String
     var title: String
     @Binding var value: Double
     var colour: Color
@@ -23,7 +23,7 @@ struct EditGoalsBubblesView: View {
     var body: some View {
         VStack{
             HStack {
-                Image(systemName: symbol)
+                //Image(systemName: symbol)
                 Text(title)
                     .font(.title2)
                     .fontWeight(.bold)
@@ -58,6 +58,6 @@ struct EditGoalsBubblesView: View {
 }
 
 #Preview {
-    EditGoalsBubblesView(symbol: "moon", title: "Sleep", value: .constant(0), colour: .blue, alertTitle: "sleep", alertMessage: "what are you doing", alertButtonText: "done")
+    EditGoalsBubblesView(title: "Sleep", value: .constant(0), colour: .blue, alertTitle: "sleep", alertMessage: "what are you doing", alertButtonText: "done")
 }
 

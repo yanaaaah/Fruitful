@@ -42,15 +42,16 @@ struct LoggingView: View {
                             .foregroundColor(.secondary)
                         //.fontWeight(.bold)
                             .multilineTextAlignment(.center)
-                        EditGoalsBubbleSubView(symbol: "bed.double.fill", title: " Sleep", value: $sleep, colour: .green, alertTitle: "Sleep", alertMessage: "Sleep is cruicial for enhacing overall well-being and cognitive function with most people needing 7-9 hours.", alertButtonText: "Done" )
-                        EditGoalsBubbleSubView(symbol: "figure.walk", title: "Movement", value: $movement, colour: .blue, alertTitle: "Movement Information", alertMessage: "Physical movement is important for overall health and well-being and recommended 30mins a day.", alertButtonText: "Done" )
-                        EditGoalsBubbleSubView(symbol: "person.2", title: "Social", value: $social, colour: .yellow, alertTitle: "Social Information", alertMessage: "Regular social connection is important to combat loneliness and foster emtional wellbeing. This can incude seeing friends and family.", alertButtonText: "Done" )
-                        EditGoalsBubbleSubView(symbol: "leaf", title: "Personal", value: $personal, colour: .orange, alertTitle: "Personal Information", alertMessage: "This includes time dedicated  to hobbies, running errands, attending appointments or engaging in activities that contribute to your personal wellbeing.", alertButtonText: "Done" )
-                        EditGoalsBubbleSubView(symbol: "clock", title: "Downtime", value: $downtime, colour: .pink, alertTitle: "Downtime Information", alertMessage: "This is time spent doing nothing in particular, like scrolling on your phone or simply lying in bed. Rest is essential, so don’t feel guilty as your mind and body need it.", alertButtonText: "Done" )
+                        EditGoalsBubbleSubView(title: "🍏 Sleep", value: $sleep, colour: .sleepColour, alertTitle: "Sleep Information", alertMessage: "Sleep is cruicial for enhacing overall well-being and cognitive function with most people needing 7-9 hours.", alertButtonText: "Done" )
+                        EditGoalsBubbleSubView(title: "🫐 Movement", value: $movement, colour: .movementColour, alertTitle: "Movement Information", alertMessage: "Physical movement is important for overall health and well-being and recommended 30mins a day.", alertButtonText: "Done" )
+                        EditGoalsBubbleSubView(title: "🍋 Social", value: $social, colour: .socialColour, alertTitle: "Social Information", alertMessage: "Regular social connection is important to combat loneliness and foster emtional wellbeing. This can incude seeing friends and family.", alertButtonText: "Done" )
+                        EditGoalsBubbleSubView(title: "🍊 Personal", value: $personal, colour: .personalColour, alertTitle: "Personal Information", alertMessage: "This includes time dedicated  to hobbies, running errands, attending appointments or engaging in activities that contribute to your personal wellbeing.", alertButtonText: "Done" )
+                        EditGoalsBubbleSubView(title: "🥭 Downtime", value: $downtime, colour: .downtimeColour, alertTitle: "Downtime Information", alertMessage: "This is time spent doing nothing in particular, like scrolling on your phone or simply lying in bed. Rest is essential, so don’t feel guilty as your mind and body need it.", alertButtonText: "Done" )
+                        
                         VStack{
                             HStack{
-                                Image(systemName: "book")
-                                Text("Study")
+                                //Image(systemName: "book")
+                                Text("🍇 Study")
                                     .font(.title2)
                                     .fontWeight(.bold)
                                 Spacer()
@@ -62,14 +63,14 @@ struct LoggingView: View {
                             }
                         }
                         .padding(20)
-                        .background(Color.purple.opacity(0.25))
+                        .background(Color.studyColour.opacity(0.20))
                         .cornerRadius(30)
                         
                         
                         VStack{
                             HStack{
-                                Image(systemName: "briefcase")
-                                Text("Work")
+                                //Image(systemName: "briefcase")
+                                Text("🍓 Work")
                                     .font(.title2)
                                     .fontWeight(.bold)
                                 Spacer()
@@ -80,7 +81,7 @@ struct LoggingView: View {
                             }
                         }
                         .padding(20)
-                        .background(Color.gray.opacity(0.25))
+                        .background(Color.workColour.opacity(0.20))
                         .cornerRadius(30)
                     }
                     Text("Total Hours Logged: \(String(format: "%.1f", Double(sleep + study + movement + social + work + personal + downtime)))\n")
