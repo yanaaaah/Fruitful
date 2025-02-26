@@ -9,16 +9,16 @@ import SwiftUI
 
 @main
 struct FruitfullApp: App {
+    @State private var dayDataStore = DayDataStore()
+    
     var body: some Scene {
         WindowGroup {
-            TabView {
-                HomeView()
-                    .tabItem {
-                        Image(systemName: "tree")
-                        Text("Home")
-                    }
-            }
-            .tint(.greenColour)
+//            TabView {
+//                
+//            }
+//            .environment(dayDataStore)
+            LoggingView()
+                .environment(dayDataStore)
         }
     }
 }
