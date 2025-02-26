@@ -24,7 +24,8 @@ struct HomeView: View {
     @State private var selectedFruitCategory: ActivityCategory?
     @State private var alertQueue: [ActivityCategory] = []
     @State private var alertedCategories = Set<UUID>()
-    var count: Int = 0
+    var count: Int = 0 //for the commit
+    
     
     let categories = [
         ActivityCategory(name: "Sleep", color: .mint, score: 4, goalTime: 24, loggedTime: 24, fruitEmoji: "🍏"),
