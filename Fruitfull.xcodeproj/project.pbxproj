@@ -6,13 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		2697C05F2D6E9A63007F5DB4 /* EditGoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697C05E2D6E9A63007F5DB4 /* EditGoalsView.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		1194E5EC2D6BE7CE002E7CCC /* Fruitfull.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fruitfull.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2697C05E2D6E9A63007F5DB4 /* EditGoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -37,7 +32,6 @@
 		1194E5E32D6BE7CE002E7CCC = {
 			isa = PBXGroup;
 			children = (
-				2697C05E2D6E9A63007F5DB4 /* EditGoalsView.swift */,
 				1194E5EE2D6BE7CE002E7CCC /* Fruitfull */,
 				1194E5ED2D6BE7CE002E7CCC /* Products */,
 			);
@@ -125,7 +119,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2697C05F2D6E9A63007F5DB4 /* EditGoalsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
