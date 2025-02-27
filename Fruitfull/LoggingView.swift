@@ -59,7 +59,7 @@ struct LoggingView: View {
                             }
                             Slider(value: $study, in: 0...24, step:0.5)
                             HStack{
-                                Text("\(String(format: "%.1f", Double(study))) hours per day")
+                                Text("\(String(format: "%.1f", Double(study))) hours")
                             }
                         }
                         .padding(20)
@@ -77,7 +77,7 @@ struct LoggingView: View {
                             }
                             Slider(value: $work, in: 0...24, step:0.5)
                             HStack{
-                                Text("\(String(format: "%.1f", Double(work))) hours per day")
+                                Text("\(String(format: "%.1f", Double(work))) hours")
                             }
                         }
                         .padding(20)

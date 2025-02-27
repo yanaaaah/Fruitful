@@ -39,6 +39,7 @@ struct FruitfullApp: App {
                     Text("Account")
                 }
             }
+            .tint(.greenColour)
             .environment(dayDataStore)
         }
         //            TabView {

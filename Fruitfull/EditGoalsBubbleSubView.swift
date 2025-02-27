@@ -44,7 +44,7 @@ struct EditGoalsBubbleSubView: View {
             }
             Slider(value: $value, in: 0...24, step: 0.5)
             HStack{
-                Text("\(String(format: "%.1f", Double(value))) hours a day ")
+                Text("\(String(format: "%.1f", Double(value))) hours ")
             }
             
         }

@@ -76,9 +76,9 @@ struct EditGoalsView: View {
                             }
                             Slider(value: $work, in: 0...24, step:0.5)
                             HStack{
-                                Text(" \(String(format: "%.1f", Double(study))) hours a day")
+                                Text(" \(String(format: "%.1f", Double(work))) hours a day")
                                 Spacer()
-                                Text(" \(String(format: "%.1f", Double(study)*7)) hours a week ")
+                                Text(" \(String(format: "%.1f", Double(work)*7)) hours a week ")
                             }
                         }
                         .padding(20)
